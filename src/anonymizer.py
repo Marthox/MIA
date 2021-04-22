@@ -6,7 +6,7 @@ anonymizer = dicognito_anonymizer.Anonymizer()
 
 
 def anonymize(image_dirs, output_dirs, extension):
-    trace_back = {}
+    traceback = {}
     for folder in image_dirs:
         items = glob(folder + '/*'+extension, recursive=False)
         for image in items:
