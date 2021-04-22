@@ -3,7 +3,10 @@ from os import path
 
 
 def recursive_folder_search(parent_dir, extension, index):
-    items = glob(parent_dir + '/*', recursive=False)
+    items = glob(
+        parent_dir + '/*[!env][!src]*',
+        recursive=False
+        )
     interest_folders = []
 
     for item in items:

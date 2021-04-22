@@ -3,11 +3,12 @@ from argparse import ArgumentParser
 
 from src.recursive_folder_search import recursive_folder_search
 from src.path_formater import path_formater
+from src.anonymizer import anonymize
 
 
 def main():
     # Define the default values
-    default_ext = ''
+    default_ext = '.dcm'
     parent_dir = getcwd()
     output_dir = getcwd() + path.sep + 'output'
 
@@ -39,15 +40,21 @@ def main():
         )
     parser.add_argument(
         '-ext', '--extension', type=str, action='store',
-        help='the extension of medical images you are '
-             'looking to anonimize (default:["{}"])'.format(
+        help='The extension of medical images you are '
+             'looking to anonimize (default:[{}])'.format(
                                  default_ext
                                 )
+        )
+    parser.add_argument(
+        '-C', '--convert', action='store_true',
+        help='Boolean value  which defines if converts'
+             'the images to nifti (default:[True])'
         )
 
     # Obtain the args
     args = parser.parse_args()
     parser.print_help()
+    print(args)
 
     relative_dirs_to_folders = recursive_folder_search(
         parent_dir=parent_dir, extension=default_ext, index=index_to_relative
@@ -59,6 +66,12 @@ def main():
 
     full_dirs_to_folders = path_formater(
         parent_dir=parent_dir, relative_dirs=relative_dirs_to_folders
+        )
+
+    anonymize(
+        image_dirs=full_dirs_to_folders,
+        output_dirs=full_dirs_to_outputs,
+        extension=default_ext
         )
 
 
