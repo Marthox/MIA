@@ -48,14 +48,14 @@ Supose there is a folder aside the main.py file called "images" to anonymize the
 
 #### **Custon dir anonymize**
 
-Supose there is a folder in your desktop (~/usr/desktop/) called "images", which contains the images to anonymize, you should then run either:
+Supose there is a folder in your desktop (\~/usr/desktop/) called "images", which contains the images to anonymize, you should then run either:
 
 - ```python main.py -dir "~/usr/desktop/images" -A```
 - ```python main.py -dir "~/usr/desktop/images" --anonymize```
 
 #### **Custom output dir anonymize**
 
-Supose there is a folder in your desktop (~/usr/desktop/) called "images", which contains the images to anonymize, and you want then to output in your documents (~/usr/documents/), you should then run either:
+Supose there is a folder in your desktop (\~/usr/desktop/) called "images", which contains the images to anonymize, and you want then to output in your documents (\~/usr/documents/), you should then run either:
 
 - ```python main.py -dir "~/usr/desktop/images" -out "~/usr/documents/" -A```
 - ```python main.py -dir "~/usr/desktop/images" -out "~/usr/documents/" --anonymize```
