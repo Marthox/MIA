@@ -9,6 +9,7 @@ anonymizer = dicognito_anonymizer.Anonymizer()
 def anonymize(image_dirs, output_dirs, extension):
     traceback = {}
     for folder in image_dirs:
+        print('Checking folder: %(folder)s')
         items = glob(folder + '/*'+extension, recursive=False)
         for image in items:
             with dcmread(image) as dataset:
@@ -48,12 +49,13 @@ def anonymize(image_dirs, output_dirs, extension):
                         traceback[user_id]['anonymized_images'].\
                             append(anonymized_image_id)
 
+                if "Protocol Name" not in traceback[user_id]:
+                    traceback[user_id]["Protocol Name"] = \
+                        anonymized_dataset[0x0020, 0x0010].value
+        print("Folder %(folder)s successfuly anonimized")
     json_data = dumps(traceback)
     f = open('traceback.json', 'w')
     f.write(json_data)
     f.close()
-
-    for image in traceback:
-        print(image)
 
     return(traceback)
