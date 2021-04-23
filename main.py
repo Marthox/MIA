@@ -26,18 +26,17 @@ def main():
     # Obtain the args
     args = parser.parse_args()
     parser.print_help()
-    print(args)
 
     relative_dirs_to_folders = recursive_folder_search(
         parent_dir=parent_dir, extension=ext, index=index_to_relative
     )
 
     full_dirs_to_outputs = path_formater(
-        parent_dir=output_dir, relative_dirs=relative_dirs_to_folders
+        parent_dirs=output_dir, relative_dirs=relative_dirs_to_folders
     )
 
     full_dirs_to_folders = path_formater(
-        parent_dir=parent_dir, relative_dirs=relative_dirs_to_folders
+        parent_dirs=parent_dir, relative_dirs=relative_dirs_to_folders
     )
 
     if args.directory != None:
@@ -49,10 +48,11 @@ def main():
     if args.extension != None:
         ext = args.extension
 
-    anonymize(
-        image_dirs=full_dirs_to_folders,
-        output_dirs=full_dirs_to_outputs,
-        extension=ext
+    if args.anonymize:
+        anonymize(
+            image_dirs=full_dirs_to_folders,
+            output_dirs=full_dirs_to_outputs,
+            extension=ext
         )
 
     if args.convert:
