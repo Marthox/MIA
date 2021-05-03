@@ -39,25 +39,30 @@ def main():
         parent_dirs=parent_dir, relative_dirs=relative_dirs_to_folders
     )
 
-    if args.directory != None:
-        parent_dir = args.directory
+    if args.dir != None:
+        parent_dir = args.dir
     
-    if args.output != None:
-        output_dir = args.output
+    if args.out != None:
+        output_dir = args.out
 
-    if args.extension != None:
-        ext = args.extension
+    if args.aext != None:
+        ext = args.aext
 
-    if args.anonymize:
+    if args.cext != None:
+        ext = args.cext
+
+    if args.A:
         anonymize(
             image_dirs=full_dirs_to_folders,
             output_dirs=full_dirs_to_outputs,
             extension=ext
         )
 
-    if args.convert:
+    if args.C:
         convert(
-            full_dirs_to_folders, full_dirs_to_outputs
+            image_dirs=full_dirs_to_folders,
+            output_dirs=full_dirs_to_outputs,
+            ext=ext
         )
 
 if __name__ == '__main__':
