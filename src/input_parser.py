@@ -1,8 +1,17 @@
 from argparse import ArgumentParser
 
+'''
+Function "create_parser" creates a parser to interpret user inputs.
 
+    Arguments:
+        default_arguments: It is a dictionary that receives as key, 
+            the name of the argument, and as value, the default value that 
+            the argument will take in case it is not specified by the user.
+
+    Return: A parser object
+'''
 def create_parser(default_arguments):
-    # Create the parser
+    # Creating the parser
     parser = ArgumentParser(
         allow_abbrev=False,
         prog='Anonimizer',

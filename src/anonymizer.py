@@ -3,10 +3,23 @@ from pydicom import dcmread
 from json import dumps
 from dicognito import anonymizer as dicognito_anonymizer
 
-anonymizer = dicognito_anonymizer.Anonymizer()
+'''
+Function "anonymize" anonymize the images and write a traceback file which
+    indicates the previous values of the anonymized images, this could be used
+    in some scenarios but we strongly recomend to delete it.
 
+    Arguments:
+        image_dirs: It is an array which contains the folder directories
+            of the dicom files
 
+        output_dirs: It is an array which contains the folder directories
+            to output the converted files
+            
+        extension: It is a string which indicates the extension of the 
+            images to convert
+'''
 def anonymize(image_dirs, output_dirs, extension):
+    anonymizer = dicognito_anonymizer.Anonymizer()
     traceback = {}
     for folder in image_dirs:
         print('\nChecking folder: {}'.format(folder))
@@ -64,5 +77,3 @@ def anonymize(image_dirs, output_dirs, extension):
     f = open('traceback.json', 'w')
     f.write(json_data)
     f.close()
-
-    return(traceback)

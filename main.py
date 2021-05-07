@@ -27,43 +27,44 @@ def main():
     args = parser.parse_args()
     parser.print_help()
 
-    relative_dirs_to_folders = recursive_folder_search(
-        parent_dir=parent_dir, extension=ext, index=index_to_relative
-    )
-
-    full_dirs_to_outputs = path_formater(
-        parent_dirs=output_dir, relative_dirs=relative_dirs_to_folders
-    )
-
-    full_dirs_to_folders = path_formater(
-        parent_dirs=parent_dir, relative_dirs=relative_dirs_to_folders
-    )
-
-    if args.dir != None:
-        parent_dir = args.dir
-    
-    if args.out != None:
-        output_dir = args.out
-
-    if args.aext != None:
-        ext = args.aext
-
-    if args.cext != None:
-        ext = args.cext
-
-    if args.A:
-        anonymize(
-            image_dirs=full_dirs_to_folders,
-            output_dirs=full_dirs_to_outputs,
-            extension=ext
+    if (args.A or args.C):
+        relative_dirs_to_folders = recursive_folder_search(
+            parent_dir=parent_dir, extension=ext, index=index_to_relative
         )
 
-    if args.C:
-        convert(
-            image_dirs=full_dirs_to_folders,
-            output_dirs=full_dirs_to_outputs,
-            ext=ext
+        full_dirs_to_outputs = path_formater(
+            parent_dir=output_dir, relative_dirs=relative_dirs_to_folders
         )
+
+        full_dirs_to_folders = path_formater(
+            parent_dir=parent_dir, relative_dirs=relative_dirs_to_folders
+        )
+
+        if args.dir != None:
+            parent_dir = args.dir
+        
+        if args.out != None:
+            output_dir = args.out
+
+        if args.aext != None:
+            ext = args.aext
+
+        if args.cext != None:
+            ext = args.cext
+
+        if args.A:
+            anonymize(
+                image_dirs=full_dirs_to_folders,
+                output_dirs=full_dirs_to_outputs,
+                extension=ext
+            )
+
+        if args.C:
+            convert(
+                image_dirs=full_dirs_to_folders,
+                output_dirs=full_dirs_to_outputs,
+                ext=ext
+            )
 
 if __name__ == '__main__':
     main()
