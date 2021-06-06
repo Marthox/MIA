@@ -1,6 +1,6 @@
-# **MTX Medical Image Anonymizer (MIA)**
+# **MIA (Medical Image Anonymizer)**
 
-MTX MIA is a software that allows to anonymize medical images in DICOM format (.dcm) and convert them to NIFTI format (.nii).
+MIA is a software that allows to anonymize medical images in DICOM format (.dcm) and convert them to NIFTI format (.nii).
 
 ## *Requirements*
 
